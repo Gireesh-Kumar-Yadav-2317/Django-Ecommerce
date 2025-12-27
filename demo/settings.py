@@ -136,8 +136,6 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static_in_env',
 ]
 
-# Whitenoise storage backend
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'

@@ -2,30 +2,32 @@ version: "3.8"
 
 services:
   web:
-    build: .
+    build:
+      context: ..                # parent folder as build context
+      dockerfile: docker/Dockerfile
     container_name: django_ecommerce_web
     ports:
       - "8000:8000"
     env_file:
-      - .env
+      - .env                  # point to parent .env
     depends_on:
       db:
         condition: service_healthy
     volumes:
-      - .:/app
+      - ..:/app                  # mount parent folder
 
   db:
     image: mysql:5.7
     container_name: django_ecommerce_db
     restart: always
     env_file:
-      - .env
+      - .env                  # point to parent .env
     ports:
       - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
     healthcheck:
-      test: ["CMD-SHELL", "mysqladmin ping -h localhost -uroot -p$MYSQL_ROOT_PASSWORD"]
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -uroot -p${MYSQL_ROOT_PASSWORD}"]
       interval: 10s
       timeout: 5s
       retries: 5
