@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: django-db
+spec:
+  selector:
+    app: django-db   # must match Deployment label
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306
+  clusterIP: None    # headless service so Django can connect directly
+
