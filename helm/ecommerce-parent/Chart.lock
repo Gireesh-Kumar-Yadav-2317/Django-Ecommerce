@@ -1,0 +1,9 @@
+dependencies:
+- name: mysql
+  repository: file://charts/mysql
+  version: 0.1.0
+- name: django-app
+  repository: file://charts/django-app
+  version: 0.1.0
+digest: sha256:a2bc38b81e37624705c76e0ca9bbc268cfbb1b71604d8ed64876643e3b347b51
+generated: "2025-12-28T11:26:45.929691238Z"

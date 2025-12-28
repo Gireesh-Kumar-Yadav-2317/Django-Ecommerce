@@ -1,0 +1,31 @@
+# values.yaml in ecommerce-parent
+
+# MySQL subchart values
+mysql:
+  replicaCount: 2
+  image:
+    repository: mysql
+    tag: "5.7"
+  rootPassword: root
+  database: ecommerce_db
+  username: ecommerce_user
+  password: root
+  service:
+    type: ClusterIP
+    port: 3306
+
+# Django subchart values
+django-app:
+  replicaCount: 2
+  image:
+    repository: gireeshkumar1723/docker-web
+    tag: latest
+  env:
+    DB_HOST: ecommerce-mysql        # Must match MySQL service name from subchart
+    DB_NAME: ecommerce_db
+    DB_USER: ecommerce_user
+    DB_PASSWORD: root
+  service:
+    type: NodePort
+    port: 8000
+
